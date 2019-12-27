@@ -1,0 +1,12 @@
+#include<iostream.h>
+#include<conio.h>
+int main()
+{
+  int ivar=25;
+  float fvar=35.87;
+  cout<<"ivar="<<ivar<<endl;
+  cout<<"fvar="<<fvar<<endl;
+  cout<<"fvar(int)"<<float(ivar);
+  cout<<"ivar(float)"<<int(fvar);
+  return 0;
+}
