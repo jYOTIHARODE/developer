@@ -1,0 +1,25 @@
+#include<iostream.h>
+  int area(int);
+  int area(int,int);
+  float area(float);
+int main()
+{
+  cout<<"calling the area() function for computing the area of a square (side=5)"<<area(5)<<endl;
+  cout<<"calling the area() function for computing the area of a square (length=5,breadth=10)"<<area(5,10)<<endl;
+  cout<<"calling the area() function for computing the area of a circle (radius=5.5)"<<area(5.5)<<endl;
+  return 0;
+}
+int area(int side)
+{
+  return (side*side);
+}
+
+int area(int len.int bre)
+{
+  return (len*bre);
+}
+
+float area(int r)
+{
+  return (3.14*r*r);
+}
