@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int num1,num2;
+	cout<<"Enter  two umbers to find the gcd \n";
+	cin>>num1>>num2;
+	int result=__gcd(num1,num2);
+	cout<<"gcd of "<<num1<<" and "<<num2<<" is = ";
+	cout<<result<<endl;
+	return 0;
+}
