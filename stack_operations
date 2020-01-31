@@ -1,0 +1,96 @@
+#include<bits/stdc++.h>
+#define MAX 3
+using namespace std;
+
+int s[MAX],top=-1;
+
+
+void push(int s[],int val)
+{
+	if(top==MAX-1)
+	{
+		cout<<" stack overflow"<<endl;
+	}
+	top++;
+	s[top]=val;
+	
+}
+
+
+int pop(int s[])
+{
+	
+	int val;
+	if(top==-1)
+	{
+		cout<<"Stack underflow"<<endl;
+		return -1;
+	}		
+	val=s[top];
+	top--;
+	
+}
+
+
+int  peek(int s[])
+{
+	if(top==-1)
+	{
+		cout<<"Stack is empty "<<endl;
+		return -1;
+	}
+	return (s[top]);
+}
+
+
+void display(int s[])
+{
+	
+	if(top==-1)
+		cout<<"stack is empty"<<endl;
+	for(int i=top;i>=0;i--)
+		cout<<s[i]<<endl;
+}
+
+
+int main(int argc,char *argv[])
+{
+	int val,option;
+	do
+	{
+		cout<<endl<<"***********MENU************"<<endl;
+		cout<<endl<<"1. PUSH"<<endl;
+		cout<<endl<<"2. POP"<<endl;
+		cout<<endl<<"3. PEEK"<<endl;
+		cout<<endl<<"4. DISPLAY"<<endl;
+		cout<<endl<<"5. EXIT"<<endl;
+		cout<<endl<<"Enter your choice "<<endl;
+		cin>>option;
+		switch(option)	
+		{
+			case 1:
+				cout<<"Enter the number to be pushed on stack "<<endl;
+				cin>>val;
+				push(s,val);
+				break;
+				
+			case 2:
+				val=pop(s);
+				if(val!=-1)
+				cout<<"value deleted frpm stack is :"<<val<<endl;
+				break;				
+				
+			case 3:
+				val=peek(s);
+				if(val!=-1)
+				cout<<"The value stored at the top of the stack is : "<<val;
+				break;
+				
+			case 4:
+				display(s);
+				break;
+				
+		}
+	}while(option!=5);
+	return 0;	
+}
