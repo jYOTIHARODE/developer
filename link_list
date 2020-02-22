@@ -1,0 +1,328 @@
+#include<iostream>
+#include<malloc.h>
+using namespace std;
+
+struct node
+{
+	int info;
+	struct node *link;
+};
+
+struct node *create_list(struct node *start);
+void display(struct node *start);
+void count(struct node *start);
+void search(struct node *start,int data);
+struct node *addatbeg(struct node *start,int data);
+struct node *addatend(struct node *start,int data);
+struct node *addafter(struct node *start,int data,int item);
+struct node *addbefore(struct node *start,int data,int item );
+struct node *addatpos(struct node *start,int data,int pos);
+struct node *del(struct node *start,int data);
+struct node *reverse(struct node *start);
+
+int main()
+{
+	struct node *start=NULL;	
+	int choice,data,item,pos;
+		
+	while(1)
+	{
+		cout<<"1.Create List\n";
+		cout<<"2.Display\n";
+		cout<<"3.Count\n";
+		cout<<"4.Search\n";
+		cout<<"5.Add to empty list / Add at beginning\n";
+		cout<<"6.Add at end\n";
+		cout<<"7.Add after node\n";
+		cout<<"8.Add before node\n";
+		cout<<"9.Add at position\n";
+		cout<<"10.Delete\n";
+		cout<<"11.Reverse\n";
+		cout<<"12.Quit\n\n";
+		
+		cout<<"Enter your choice : ";
+		cin>>choice;
+		
+		switch(choice)
+		{
+		 case 1:
+			start=create_list(start);
+			break;
+		 case 2:
+			display(start);
+			break;
+		 case 3:
+			count(start);
+			break;
+		 case 4:
+			cout<<"Enter the element to be searched : ";
+			cin>>data;
+			search(start,data);
+			break;
+		 case 5:
+			cout<<"Enter the element to be inserted : ";
+			cin>>data;
+			start=addatbeg(start,data);
+			break;
+		 case 6:
+			cout<<"Enter the element to be inserted : ";
+			cin>>data;
+			start=addatend(start,data);
+			break;
+		 case 7:
+			cout<<"Enter the element to be inserted : ";
+			cin>>data;
+			cout<<"Enter the element after which to insert : ";
+			cin>>item;
+			start=addafter(start,data,item);
+			break;
+		 case 8:
+			cout<<"Enter the element to be inserted : ";
+			cin>>data;
+			cout<<"Enter the element before which to insert : ";
+			cin>>item;
+			start=addbefore(start,data,item);
+			break;
+		 case 9:
+			cout<<"Enter the element to be inserted : ";
+			cin>>data;
+			cout<<"Enter the position at which to insert : ";
+			cin>>pos;
+			start=addatpos(start,data,pos);
+			break;
+		 case 10:
+			cout<<"Enter the element to be deleted : ";
+			cin>>data;
+			start=del(start, data);	
+			break;
+		 case 11:
+			start=reverse(start);
+			break;
+		 case 12:
+			 exit(1);
+		 default:
+			 cout<<"Wrong choice\n";
+		}
+	}
+}
+
+struct node *create_list(struct node *start)
+{
+	int i,n,data;
+	cout<<"Enter the number of nodes : ";
+	cin>>n;
+	start=NULL;
+	if(n==0)
+		return start;
+
+	cout<<"Enter the element to be inserted : ";
+	cin>>data;
+	start=addatbeg(start,data);
+
+	for(i=2;i<=n;i++)
+	{
+		cout<<"Enter the element to be inserted : ";
+		cin>>data;
+		start=addatend(start,data);	
+	}
+	return start;
+}
+
+void display(struct node *start)
+{
+	struct node *p;
+	if(start==NULL)
+	{
+		cout<<"List is empty\n";
+		return;
+	}
+	p=start;
+	cout<<"List is :\n";
+	while(p!=NULL)
+	{
+		cout<<p->info<<" ";
+		p=p->link;
+	}
+	cout<<"\n\n";
+}
+
+void count(struct node *start)
+{
+	struct node *p;
+	int cnt=0;
+	p=start;
+	while(p!=NULL)
+	{
+		p=p->link;
+		cnt++;
+	}
+	cout<<"Number of elements are "<<cnt<<endl;
+}
+
+void search(struct node *start,int item)
+{
+	struct node *p=start;
+	int pos=1;
+	while(p!=NULL)
+	{
+		if(p->info==item)
+		{
+			cout<<"Item "<<item <<"found at position "<<pos<<endl;
+			return;
+		}
+		p=p->link;
+		pos++;
+	}
+	cout<<"Item "<<item<<" not found in list\n";
+}
+
+struct node *addatbeg(struct node *start,int data)
+{
+	struct node *tmp;
+	tmp=(struct node *)malloc(sizeof(struct node));
+	tmp->info=data;
+	tmp->link=start;
+	start=tmp;
+	return start;
+}
+
+struct node *addatend(struct node *start,int data)
+{
+	struct node *p,*tmp;
+	tmp=(struct node *)malloc(sizeof(struct node));
+	tmp->info=data;
+	p=start;
+	while(p->link!=NULL)
+		p=p->link;
+	p->link=tmp;
+	tmp->link=NULL;
+	return start;
+}
+
+struct node *addafter(struct node *start,int data,int item)
+{
+	struct node *tmp,*p;
+	p=start;
+	while(p!=NULL)
+	{
+		if(p->info==item)
+		{
+			tmp=(struct node *)malloc(sizeof(struct node));
+			tmp->info=data;
+			tmp->link=p->link;
+			p->link=tmp;
+			return start;
+		}
+		p=p->link;
+	}
+	cout<<"%d not present in the list\n"<<item;
+	return start;
+}
+
+struct node *addbefore(struct node *start,int data,int item)
+{
+	struct node *tmp,*p;
+	if(start==NULL )
+	{
+		cout<<"List is empty\n";
+		return start;
+	}	
+	
+	if(item==start->info)
+	{
+		tmp=(struct node *)malloc(sizeof(struct node));
+		tmp->info=data;
+		tmp->link=start;
+		start=tmp;
+		return start;
+	}	
+	p=start;
+	while(p->link!=NULL) 
+	{
+		if(p->link->info==item)
+		{
+			tmp=(struct node *)malloc(sizeof(struct node));
+			tmp->info=data;
+			tmp->link=p->link;
+			p->link=tmp;
+			return start;
+		}
+		p=p->link;
+	}
+	cout<<"%d not present in the list\n"<<item;
+	return start;
+}
+
+struct node *addatpos(struct node *start,int data,int pos)
+{
+	struct node *tmp,*p;
+	int i;
+	tmp=(struct node *)malloc(sizeof(struct node));
+	tmp->info=data;
+	if(pos==1)
+	{
+		tmp->link=start; 
+		start=tmp;
+		return start;
+	}
+	p=start;
+	for(i=1; i<pos-1 && p!=NULL; i++)
+		p=p->link;
+	if(p==NULL)
+		cout<<"There are less than %d elements\n"<<pos;
+	else
+	{
+		tmp->link=p->link;
+		p->link=tmp;
+	}	
+	return start;
+}
+
+struct node *del(struct node *start,int data)
+{
+	struct node *tmp,*p;
+	if(start==NULL)
+	{
+		cout<<"List is empty\n";
+		return start;
+	}
+	
+	if(start->info==data)
+	{
+		tmp=start;
+		start=start->link;  
+		free(tmp);
+		return start;
+	}
+	
+	p=start;
+	while(p->link!=NULL)
+	{
+		if(p->link->info==data)   
+		{
+			tmp=p->link;
+			p->link=tmp->link;
+			free(tmp);
+			return start;
+		}
+		p=p->link;
+	}
+	cout<<"Element %d not found\n"<<data;
+	return start;
+}
+
+struct node *reverse(struct node *start)
+{
+	struct node *prev, *ptr, *next;
+	prev=NULL;
+   	ptr=start;
+	while(ptr!=NULL)
+	{
+		next=ptr->link;
+		ptr->link=prev;
+		prev=ptr;
+		ptr=next;
+	}
+	start=prev;
+	return start;
+}
