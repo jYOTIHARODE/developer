@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+class Sample
+{
+	int a;
+	int b;
+	public:
+		void getvalue()
+		{
+			cout<<"Enter two numbers "<<endl;
+			cin>>a>>b;	
+		}	
+		friend float mean(Sample s);
+};
+
+float mean(Sample s)
+{
+	return float(s.a+s.b)/2.0;
+}
+
+int main()
+{
+	Sample x;
+	x.getvalue();
+	cout<<"Mean value = "<<mean(x);
+	return 0;
+}
