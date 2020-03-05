@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Invent2;
+
+class Invent1
+{
+	int code;
+	int items;
+	float price;
+	
+	public:
+	Invent1(int a,int b,float c)	
+	{
+		code=a;
+		items=b;
+		price=c;
+	}
+	void putdata()
+	{
+		cout<<"code : "<<code<<endl;
+		cout<<"Items : "<<items<<endl;
+		cout<<"price : "<<price<<endl;
+	}
+	int getcode()
+	{
+		return code;
+	}
+	int getitems()
+	{
+		return items;
+	}
+	float getprice ()
+	{
+		return price;
+	}
+	operator float()
+	{
+		return items*price;
+	}
+};
+
+class Invent2
+{
+	int code;
+	float value;
+	
+	public:		
+			Invent2()
+			{
+				code=0;
+				value=0;
+			}
+			Invent2(int x,float y)
+			{
+				code =x;
+				value=y;
+			}
+			void putdata()
+			{
+				cout<<"code : "<<code<<endl;
+				cout<<"value : "<<value<<endl;
+			}
+			Invent2(Invent1 p)
+			{
+				code=p.getcode();
+				value=p.getitems() * p.getprice();
+			}
+	};
+	
+int main()
+{
+	Invent1 s1(100,5,140.0);
+	Invent2 d1;
+	float total_value;
+	total_value=s1;
+	d1=s1;
+	cout<<"Product details - invent1 type "<<endl;
+	s1.putdata();
+	cout<<endl<<"Stock value "<<endl;
+	cout<<"Value = "<<total_value<<endl<<endl;
+	cout<<"Product details - invent2 type "<<endl;
+	d1.putdata();
+	return 0;
+}
