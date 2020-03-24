@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef map <string , int> phonemap;
+int main()
+{
+	string name;
+	int number;
+	phonemap phone;
+	cout<<"Enter three sets of name and number "<<endl;
+	for(int i=0;i<3;i++)
+	{
+		cin>>name;//get key
+		cin>>number;//get value
+		phone[name]=number;//put them in map
+	}
+	phone["Jacob"]=4444;//insert jacob;
+	phone.insert(pair<string,int>("Bose",5555));
+	int n=phone.size();
+	cout<<endl<<"Size of map = "<<n<<endl<<endl;
+	cout<<"List of telephone numbers "<<endl;
+	phonemap::iterator p;
+	for(p=phone.begin();p!=phone.end();p++)
+		cout<<(*p).first<<" "<<(*p).second<<endl<<endl;
+	cout<<"Enter name ";
+	cin>>name;
+	number>phone[name];
+	cout<<"Number: "<<number <<endl;
+	return 0;
+}
