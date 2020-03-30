@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Student
+{
+	protected:
+		int roll_no;
+	public:
+		void getno(int a)
+		{
+			roll_no=a;
+		}
+		void putno(void)
+		{
+			cout<<"Roll number : "<<roll_no<<endl;
+		}
+};
+
+class Test : public Student
+{
+	protected:
+		float part1,part2;
+	public:
+		void get_marks(float x,float y)
+		{
+			part1=x;
+			part2=y;
+		}
+		void put_marks()
+		{
+			cout<<"marks obtained : "<<endl<<"part1 = "<<part1<<endl<<"part2 = "<<part2<<endl;		
+		}	
+};
+
+class Sports
+{
+	protected:
+		float score;
+	public:
+		void get_score(float s)
+		{
+			score=s;
+		}
+		void put_score()
+		{
+			cout<<"sports wt : "<<score<<endl<<endl;
+		}
+};
+
+class Result:public Test,public Sports
+{
+	float total;
+	public:
+		void display();
+};
+void Result:: display(void)
+{
+	total=part1+part2+score;
+	putno();
+	put_marks();
+	put_score();
+	cout<<"total score : "<<total<<endl;	
+}
+
+int main ()
+{
+ 	Result Student_1;
+	Student_1.getno(1234); 
+	Student_1.get_marks(27.5,33.0);
+	Student_1.get_score(6.0);
+	Student_1.display();
+	return 0;       
+}
