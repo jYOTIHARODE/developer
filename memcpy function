@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int arr[3];
+    for(int i=0;i<3;i++)    cin>>arr[i];
+    int temp[3];
+    
+    memcpy(temp,arr,3*sizeof(int));//function to copy the array contents direct
+    
+    cout<<"The copied array is "<<endl;
+    for(int i=0;i<3;i++)    cout<<arr[i]<<" ";
+    return 0;
+}
